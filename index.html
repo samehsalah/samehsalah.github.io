@@ -25,12 +25,17 @@
     }
     .container {
       background: #fff;
-      border-radius: 8px;
+      border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       max-width: 400px;
       width: 100%;
-      padding: 30px;
+      padding: 40px;
       text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
     .logo {
       max-width: 150px;
@@ -39,6 +44,16 @@
     h1 {
       margin-bottom: 20px;
       color: var(--primary-dark);
+      font-size: 1.8rem;
+    }
+    .success-message {
+      display: none;
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: var(--primary-light);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 1rem;
     }
     form {
       display: flex;
@@ -47,31 +62,34 @@
     }
     input, select, textarea, button {
       font-size: 1rem;
-      padding: 10px;
-      border: 2px solid #ddd;
-      border-radius: 4px;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
       width: 100%;
+      background-color: #f1f5f9;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
     input:focus, select:focus, textarea:focus {
       outline: none;
-      border-color: var(--primary-light);
+      background-color: #fff;
       box-shadow: 0 0 0 2px rgba(64,196,255,0.3);
     }
     button {
       background-color: var(--primary-dark);
       color: #fff;
-      border: none;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
     button:hover {
       background-color: var(--primary-light);
+      transform: translateY(-2px);
     }
     .field-label {
       text-align: left;
       font-weight: bold;
       margin-bottom: 5px;
       color: var(--primary-dark);
+      display: block;
     }
   </style>
 </head>
@@ -79,7 +97,10 @@
   <div class="container">
     <img src="logo.png" alt="Company Logo" class="logo">
     <h1>Get in Touch</h1>
-    <form action="https://script.google.com/macros/s/AKfycbxX0H7c7BOpYJo7gMGpcLWO3NTpII49IwrBbl6a1m-tjCyv8BI3N3Gg3SKUCNHJE_Hq4A/exec" method="post">
+    <div id="successMessage" class="success-message">
+      Thank you for reaching out! We’ll get back to you shortly.
+    </div>
+    <form id="contactForm" action="https://script.google.com/macros/s/AKfycbxX0H7c7BOpYJo7gMGpcLWO3NTpII49IwrBbl6a1m-tjCyv8BI3N3Gg3SKUCNHJE_Hq4A/exec" method="post">
       <div>
         <label class="field-label" for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Your full name" required>
@@ -93,7 +114,6 @@
             <option value="+61">+61 (Australia)</option>
             <option value="+91">+91 (India)</option>
             <option value="+81">+81 (Japan)</option>
-            <!-- Add more country codes as needed -->
           </select>
           <input type="tel" id="phone" name="phone" placeholder="123-456-7890" style="flex-grow:1;" required>
         </div>
@@ -105,5 +125,39 @@
       <button type="submit">Submit</button>
     </form>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('contactForm');
+      const successMessage = document.getElementById('successMessage');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form)
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'success') {
+            form.reset();
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+          } else {
+            alert('Error: ' + data.message);
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit';
+          }
+        })
+        .catch(error => {
+          alert('Submission failed. Please try again later.');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit';
+        });
+      });
+    });
+  </script>
 </body>
 </html>
