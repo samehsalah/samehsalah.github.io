@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <style>
+    :root {
+      --primary-dark: #2d3f8c;
+      --primary-light: #40c4ff;
+      --bg-light: #f7f9fc;
+      --text-dark: #333;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      padding: 30px;
+      text-align: center;
+    }
+    .logo {
+      max-width: 150px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: var(--primary-dark);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    input, select, textarea, button {
+      font-size: 1rem;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      width: 100%;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 2px rgba(64,196,255,0.3);
+    }
+    button {
+      background-color: var(--primary-dark);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: var(--primary-light);
+    }
+    .field-label {
+      text-align: left;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: var(--primary-dark);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Company Logo" class="logo">
+    <h1>Get in Touch</h1>
+    <form action="https://script.google.com/macros/s/AKfycbxX0H7c7BOpYJo7gMGpcLWO3NTpII49IwrBbl6a1m-tjCyv8BI3N3Gg3SKUCNHJE_Hq4A/exec" method="post">
+      <div>
+        <label class="field-label" for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your full name" required>
+      </div>
+      <div>
+        <label class="field-label" for="phone">Phone</label>
+        <div style="display: flex; gap: 10px;">
+          <select id="countryCode" name="countryCode" required style="max-width: 30%;">
+            <option value="+1">+1 (USA)</option>
+            <option value="+44">+44 (UK)</option>
+            <option value="+61">+61 (Australia)</option>
+            <option value="+91">+91 (India)</option>
+            <option value="+81">+81 (Japan)</option>
+            <!-- Add more country codes as needed -->
+          </select>
+          <input type="tel" id="phone" name="phone" placeholder="123-456-7890" style="flex-grow:1;" required>
+        </div>
+      </div>
+      <div>
+        <label class="field-label" for="comments">Comments</label>
+        <textarea id="comments" name="comments" rows="4" placeholder="Any comments or questions?"></textarea>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>
