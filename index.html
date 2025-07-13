@@ -1,161 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
-  <style>
-    :root {
-      --primary-dark: #2d3f8c;
-      --primary-light: #40c4ff;
-      --bg-light: #f7f9fc;
-      --text-dark: #333;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: var(--bg-light);
-      color: var(--text-dark);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    .container {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      max-width: 400px;
-      width: 100%;
-      padding: 40px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .container:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    .logo {
-      max-width: 150px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      margin-bottom: 20px;
-      color: var(--primary-dark);
-      font-size: 1.8rem;
-    }
-    .success-message {
-      display: none;
-      margin-bottom: 20px;
-      padding: 15px;
-      background-color: var(--primary-light);
-      color: #fff;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    input, select, textarea, button {
-      font-size: 1rem;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      width: 100%;
-      background-color: #f1f5f9;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      background-color: #fff;
-      box-shadow: 0 0 0 2px rgba(64,196,255,0.3);
-    }
-    button {
-      background-color: var(--primary-dark);
-      color: #fff;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    button:hover {
-      background-color: var(--primary-light);
-      transform: translateY(-2px);
-    }
-    .field-label {
-      text-align: left;
-      font-weight: bold;
-      margin-bottom: 5px;
-      color: var(--primary-dark);
-      display: block;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mubasher Capital</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div class="container">
-    <img src="logo.png" alt="Company Logo" class="logo">
-    <h1>Get in Touch</h1>
-    <div id="successMessage" class="success-message">
-      Thank you for reaching out! We’ll get back to you shortly.
-    </div>
-    <form id="contactForm" action="https://script.google.com/macros/s/AKfycbxX0H7c7BOpYJo7gMGpcLWO3NTpII49IwrBbl6a1m-tjCyv8BI3N3Gg3SKUCNHJE_Hq4A/exec" method="post">
-      <div>
-        <label class="field-label" for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your full name" required>
-      </div>
-      <div>
-        <label class="field-label" for="phone">Phone</label>
-        <div style="display: flex; gap: 10px;">
-          <select id="countryCode" name="countryCode" required style="max-width: 30%;">
-            <option value="1">+1 (USA)</option>
-            <option value="44">+44 (UK)</option>
-            <option value="61">+61 (Australia)</option>
-            <option value="91">+91 (India)</option>
-            <option value="81">+81 (Japan)</option>
-          </select>
-          <input type="tel" id="phone" name="phone" placeholder="123-456-7890" style="flex-grow:1;" required>
-        </div>
-      </div>
-      <div>
-        <label class="field-label" for="comments">Comments</label>
-        <textarea id="comments" name="comments" rows="4" placeholder="Any comments or questions?"></textarea>
-      </div>
-      <button type="submit">Submit</button>
-    </form>
-  </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const form = document.getElementById('contactForm');
-      const successMessage = document.getElementById('successMessage');
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const submitBtn = form.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting...';
+  <!-- Background -->
+  <div class="background"></div>
 
-        fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form)
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.status === 'success') {
-            form.reset();
-            form.style.display = 'none';
-            successMessage.style.display = 'block';
-          } else {
-            alert('Error: ' + data.message);
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit';
-          }
-        })
-        .catch(error => {
-          alert('Submission failed. Please try again later.');
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit';
-        });
+  <!-- Form Container -->
+  <div class="form-container">
+    <img src="logo.png" alt="Mubasher Capital" class="logo" />
+    <h2>Let's Connect</h2>
+
+    <form id="contactForm" action="https://script.google.com/macros/s/AKfycbxX0H7c7BOpYJo7gMGpcLWO3NTpII49IwrBbl6a1m-tjCyv8BI3N3Gg3SKUCNHJE_Hq4A/exec" method="post">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your full name" required />
+
+      <label for="phone_code">Phone</label>
+      <div class="phone-group">
+        <select id="phone_code" name="country_code">
+          <option value="+1">+1 (US)</option>
+          <option value="+973">+973 (BH)</option>
+          <option value="+971">+971 (AE)</option>
+        </select>
+        <input type="tel" id="phone" name="phone" placeholder="123-456-7830" required />
+      </div>
+
+      <label for="comments">Comments</label>
+      <textarea id="comments" name="comments" placeholder="Any comments or questions?"></textarea>
+
+      <button type="submit">Speak to an Advisor</button>
+    </form>
+
+    <!-- Inline Thank You -->
+    <div id="thank-you" class="thank-you hidden">
+      ✅ Thank you! A Mubasher Capital advisor will contact you shortly.
+    </div>
+
+    <div class="badges">
+      <span>✅ Trusted by Thousands</span>
+      <span>✅ Regulated by CBB</span>
+    </div>
+
+    <div class="language">
+      <a href="#">English</a> | <a href="#">العربية</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: data
+      })
+      .then(res => {
+        form.style.display = 'none';
+        document.getElementById('thank-you').classList.remove('hidden');
+      })
+      .catch(err => {
+        alert('Submission failed. Please try again.');
       });
     });
   </script>
