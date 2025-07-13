@@ -1,479 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mubasher Capital - Investment Platform</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mubasher Capital – A World of Investments at Your Fingertips</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --brand-blue: #0f2d6b;
+      --brand-light: #2956c7;
+      --gray-200: #dbe1ec;
+    }
+    *, :before, :after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--brand-blue);
+      background: #fff;
+      line-height: 1.4;
+    }
+    img { max-width: 100%; display: block; }
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            min-height: 100vh;
-            position: relative;
-        }
+    /* logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      padding: 2rem 1.5rem;
+      gap: .75rem;
+    }
+    .logo-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--brand-light), var(--brand-blue));
+      display: flex; align-items: flex-end; justify-content: center;
+      padding: 6px; box-shadow: 0 4px 12px rgba(41,86,199,.35);
+    }
+    .logo-bar { flex: 1; background: #fff; margin: 0 2px; border-radius: 2px; }
+    .logo-bar:nth-child(1){ height: 30%; }
+    .logo-bar:nth-child(2){ height: 55%; }
+    .logo-bar:nth-child(3){ height: 75%; }
+    .logo-bar:nth-child(4){ height: 100%; }
+    .wordmark { display: flex; flex-direction: column; line-height: 1; }
+    .wordmark span:first-child { font-size: 2rem; font-weight: 700; }
+    .wordmark span:last-child {
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: 4px;
+      color: var(--brand-light);
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            min-height: 100vh;
-        }
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      padding: 4rem 1.5rem 12rem;
+      background:
+        linear-gradient(to bottom, rgba(255,255,255,0) 65%, #fff 100%),
+        url('background.png') no-repeat center right;
+      background-size: cover;
+      display: flex;
+      align-items: flex-start;
+      overflow: hidden;
+    }
+    .hero-content {
+      max-width: 500px;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .hero-content p {
+      font-size: 1.125rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .hero-content ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .hero-content ul li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: .6rem;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    .hero-content ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: white;
+    }
 
-        .left-section {
-            color: white;
-            z-index: 2;
-        }
+    /* FORM inside hero, overlapping */
+    .form-card {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      left: auto;
+      transform: none;
+      background: #fff;
+      border-radius: 20px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 550px;
+      max-height: 700px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+      z-index: 2;
+    }
+    .form-card h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+    .field { margin-bottom: 1.5rem; }
+    .field label {
+      display: block;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: .4rem;
+    }
+    .input, select, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 10px;
+      font-size: 1.5rem;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .input:focus, select:focus, textarea:focus {
+      border-color: var(--brand-light);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(41,86,199,.15);
+    }
+    .phone-row { display: flex; gap: 10px; }
+    .phone-row select { flex: 0 0 110px; }
+    .phone-row input  { flex: 1; }
+    .btn {
+      width: 100%;
+      padding: 1rem 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      background: var(--brand-blue);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(15,45,107,.3);
+    }
+    .trust {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      font-size: .82rem;
+      font-weight: 500;
+    }
+    .trust span {
+      display: flex; align-items: center; gap: .35rem;
+    }
+    .trust span::before {
+      content: '✓';
+      color: #22c55e;
+      font-weight: bold;
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            margin-bottom: 40px;
-        }
+    /* RESPONSIVE */
+    @media (max-width: 800px) {
+      .hero {
+        flex-direction: column;
+        align-items: center;
+        padding: 3rem 1rem 6rem;
+        min-height: auto;
+        background-position: center top;
+      }
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      .form-card {
+        position: static;
+        transform: none;
+        margin-top: 2rem;
+        right: auto;
+        left: auto;
+      }
+    }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(45deg, #0066cc, #004499);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            position: relative;
-        }
+    @media (max-width: 500px) {
+  /* Shrink hero text a bit */
+  .hero-content h1 {
+    font-size: 1.75rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .hero-content ul li {
+    font-size: 1rem;
+    padding-left: 1rem;
+  }
 
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: white;
-            clip-path: polygon(0 0, 100% 0, 100% 60%, 60% 100%, 0 100%);
-        }
+  /* Stack phone input vertically */
+  .phone-row {
+    flex-direction: column;
+  }
+  .phone-row select,
+  .phone-row input {
+    width: 100%;
+    flex: none;
+  }
 
-        .logo-text {
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+  /* Tweak form card padding & typography */
+  .form-card {
+    padding: 1rem;
+  }
+  .form-card h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .field label {
+    font-size: 1.25rem;
+  }
+  .btn {
+    font-size: 1.25rem;
+    padding: 0.75rem 0;
+  }
+}
 
-        .logo-subtext {
-            font-size: 14px;
-            color: #ccc;
-            margin-top: 2px;
-        }
+/* Floating animation */
+@keyframes floatText {
+  0%, 100%   { transform: translateY(0); }
+  50%        { transform: translateY(-10px); }
+}
 
-        .main-title {
-            font-size: 48px;
-            font-weight: bold;
-            line-height: 1.1;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
+/* Apply it to the hero text */
+.hero-content {
+  animation: floatText 6s ease-in-out infinite;
+}
 
-        .regulation-text {
-            font-size: 18px;
-            color: #e0e0e0;
-            margin-bottom: 40px;
-        }
 
-        .features {
-            list-style: none;
-        }
-
-        .features li {
-            font-size: 20px;
-            margin-bottom: 15px;
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .features li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #00ff88;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .right-section {
-            position: relative;
-        }
-
-        .form-container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .form-title {
-            color: #2a5298;
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            color: #2a5298;
-            font-weight: bold;
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: white;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #2a5298;
-            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
-        }
-
-        .phone-group {
-            display: flex;
-            gap: 10px;
-        }
-
-        .country-select {
-            flex: 0 0 120px;
-        }
-
-        .phone-input {
-            flex: 1;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(45deg, #2a5298, #1e3c72);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 20px;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(42, 82, 152, 0.3);
-        }
-
-        .trust-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            color: #666;
-            font-size: 14px;
-        }
-
-        .trust-item::before {
-            content: '✓';
-            color: #00ff88;
-            font-weight: bold;
-            margin-right: 8px;
-            font-size: 16px;
-        }
-
-        .language-selector {
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .language-btn {
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .language-btn:hover,
-        .language-btn.active {
-            background: white;
-            color: #2a5298;
-        }
-
-        .background-decoration {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background:url('background.png') center center / cover no-repeat;
-            opacity: 0.3;
-            z-index: 1;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                padding: 20px;
-            }
-
-            .main-title {
-                font-size: 36px;
-            }
-
-            .form-container {
-                padding: 30px 20px;
-            }
-
-            .language-selector {
-                position: static;
-                justify-content: center;
-                margin-top: 20px;
-            }
-
-            .phone-group {
-                flex-direction: column;
-            }
-
-            .country-select {
-                flex: none;
-            }
-        }
-
-        .loading {
-            display: none;
-            text-align: center;
-            color: #666;
-        }
-
-        .success-message {
-            display: none;
-            padding: 15px;
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        .error-message {
-            display: none;
-            padding: 15px;
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-    </style>
+  </style>
 </head>
 <body>
-    <div class="background-decoration"></div>
-    
-    <div class="container">
-        <div class="left-section">
-            <div class="logo">
-                <div class="logo-icon"></div>
-                <div>
-                    <div class="logo-text">MUBASHER</div>
-                    <div class="logo-subtext">CAPITAL</div>
-                </div>
-            </div>
-            
-            <h1 class="main-title">
-                A World of<br>
-                Investments<br>
-                at Your<br>
-                Fingertips!
-            </h1>
-            
-            <p class="regulation-text">
-                Regulated by the<br>
-                Central Bank of Bahrain
-            </p>
-            
-            <ul class="features">
-                <li>Stock Trading</li>
-                <li>Portfolio Management</li>
-                <li>Wealth Advisory</li>
-            </ul>
-        </div>
-        
-        <div class="right-section">
-            <div class="form-container">
-                <h2 class="form-title">Let's Connect</h2>
-                
-                <div class="success-message" id="successMessage">
-                    Thank you! Your message has been sent successfully. Our advisor will contact you soon.
-                </div>
-                
-                <div class="error-message" id="errorMessage">
-                    There was an error sending your message. Please try again.
-                </div>
-                
-                <form id="contactForm" action="https://script.google.com/macros/s/AKfycbxX0H7c7BOpYJo7gMGpcLWO3NTpII49IwrBbl6a1m-tjCyv8BI3N3Gg3SKUCNHJE_Hq4A/exec" method="POST">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your full name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <div class="phone-group">
-                            <select id="countryCode" name="countryCode" class="country-select">
-                                <option value="+1">+1 (US)</option>
-                                <option value="+971">+971 (UAE)</option>
-                                <option value="+973">+973 (BH)</option>
-                                <option value="+966">+966 (KSA)</option>
-                                <option value="+974">+974 (QAT)</option>
-                                <option value="+965">+965 (KW)</option>
-                                <option value="+968">+968 (OM)</option>
-                                <option value="+20">+20 (EG)</option>
-                                <option value="+44">+44 (UK)</option>
-                                <option value="+49">+49 (DE)</option>
-                                <option value="+33">+33 (FR)</option>
-                            </select>
-                            <input type="tel" id="phone" name="phone" placeholder="123-456-7890" class="phone-input" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="comments">Comments</label>
-                        <textarea id="comments" name="comments" placeholder="Any comments or questions?" rows="4"></textarea>
-                    </div>
-                    
-                    <div class="loading" id="loading">
-                        Sending your message...
-                    </div>
-                    
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        Speak to an Advisor
-                    </button>
-                    
-                    <div class="trust-indicators">
-                        <div class="trust-item">Trusted by Thousands</div>
-                        <div class="trust-item">Regulated</div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    
-    <div class="language-selector">
-        <button class="language-btn active">English</button>
-        <button class="language-btn">العربية</button>
-    </div>
+  <div class="wrapper">
+    <header class="logo">
+      <div class="logo-icon" aria-hidden="true">
+        <div class="logo-bar"></div>
+        <div class="logo-bar"></div>
+        <div class="logo-bar"></div>
+        <div class="logo-bar"></div>
+      </div>
+      <div class="wordmark">
+        <span>MUBASHER</span>
+        <span>CAPITAL</span>
+      </div>
+    </header>
 
-    <script>
-        // Form submission handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const form = e.target;
-            const formData = new FormData(form);
-            const submitBtn = document.getElementById('submitBtn');
-            const loading = document.getElementById('loading');
-            const successMessage = document.getElementById('successMessage');
-            const errorMessage = document.getElementById('errorMessage');
-            
-            // Hide previous messages
-            successMessage.style.display = 'none';
-            errorMessage.style.display = 'none';
-            
-            // Show loading state
-            submitBtn.style.display = 'none';
-            loading.style.display = 'block';
-            
-            // Combine country code and phone number
-            const countryCode = formData.get('countryCode');
-            const phone = formData.get('phone');
-            const fullPhone = countryCode + phone;
-            
-            // Create new FormData with combined phone number
-            const submitData = new FormData();
-            submitData.append('name', formData.get('name'));
-            submitData.append('phone', fullPhone);
-            submitData.append('comments', formData.get('comments'));
-            
-            fetch(form.action, {
-                method: 'POST',
-                body: submitData
-            })
-            .then(response => {
-                if (response.ok) {
-                    successMessage.style.display = 'block';
-                    form.reset();
-                } else {
-                    throw new Error('Network response was not ok');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                errorMessage.style.display = 'block';
-            })
-            .finally(() => {
-                submitBtn.style.display = 'block';
-                loading.style.display = 'none';
-            });
-        });
-        
-        // Language selector (placeholder functionality)
-        document.querySelectorAll('.language-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.language-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-        
-        // Phone number formatting
-        document.getElementById('phone').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length >= 6) {
-                value = value.substring(0, 3) + '-' + value.substring(3, 6) + '-' + value.substring(6, 10);
-            } else if (value.length >= 3) {
-                value = value.substring(0, 3) + '-' + value.substring(3);
-            }
-            e.target.value = value;
-        });
-    </script>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>A World of<br />Investments at Your Fingertips!</h1>
+        <p>Regulated by the Central Bank of Bahrain</p>
+        <ul>
+          <li>Stock Trading</li>
+          <li>Portfolio Management</li>
+          <li>Wealth Advisory</li>
+        </ul>
+      </div>
+
+      <form
+        class="form-card"
+        id="contactForm"
+        action="https://script.google.com/macros/s/AKfycbxX0H7c7BOpYJo7gMGpcLWO3NTpII49IwrBbl6a1m-tjCyv8BI3N3Gg3SKUCNHJE_Hq4A/exec"
+        method="POST"
+        novalidate
+      >
+        <h2>Let's Connect</h2>
+
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" class="input" placeholder="Your full name" required />
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone</label>
+          <div class="phone-row">
+            <select id="countryCode" name="countryCode" required>
+              <option value="+973">+973</option>
+              <option value="+971">+971</option>
+              <option value="+966">+966</option>
+              <option value="+974">+974</option>
+              <option value="+965">+965</option>
+              <option value="+968">+968</option>
+              <option value="+20">+20</option>
+              <option value="+1">+1</option>
+              <option value="+44">+44</option>
+            </select>
+            <input type="tel" id="phone" name="phone" class="input" placeholder="12345678" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="comments">Comments</label>
+          <textarea id="comments" name="comments" class="input" placeholder="Any comments or questions?" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn" id="submitBtn">Speak to an Advisor</button>
+
+        <div class="trust">
+          <span>Trusted by Thousands</span>
+          <span>Regulated</span>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    const form = document.getElementById("contactForm"),
+          btn  = document.getElementById("submitBtn");
+
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      const data = new FormData(form),
+            phone = data.get("countryCode") + data.get("phone"),
+            payload = new FormData();
+      payload.append("name", data.get("name"));
+      payload.append("phone", phone);
+      payload.append("comments", data.get("comments") || "");
+
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+
+      try {
+        await fetch(form.action, { method:"POST", body:payload, mode:"no-cors" });
+        btn.textContent = "Sent!";
+        form.reset();
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.textContent = "Speak to an Advisor";
+        }, 3000);
+      } catch {
+        btn.textContent = "Error — Try again";
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.textContent = "Speak to an Advisor";
+        }, 4000);
+      }
+    });
+  </script>
 </body>
 </html>
