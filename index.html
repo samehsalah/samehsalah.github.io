@@ -5,30 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mubasher Capital</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
-  <!-- Background -->
-  <div class="background"></div>
 
-  <!-- Form Container -->
-  <div class="form-container">
-    <img src="logo.png" alt="Mubasher Capital" class="logo" />
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <img src="logo.png" alt="Mubasher Capital" class="logo" />
+      <h1>A World of Investments at Your Fingertips!</h1>
+      <p class="subtext">Regulated by the Central Bank of Bahrain</p>
+      <ul class="services">
+        <li>Stock Trading</li>
+        <li>Portfolio Management</li>
+        <li>Wealth Advisory</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FORM CARD -->
+  <div class="form-card">
     <h2>Let's Connect</h2>
 
-    <form id="contactForm" action="https://script.google.com/macros/s/AKfycbxX0H7c7BOpYJo7gMGpcLWO3NTpII49IwrBbl6a1m-tjCyv8BI3N3Gg3SKUCNHJE_Hq4A/exec" method="post">
+    <form id="contactForm"
+          action="https://script.google.com/macros/s/AKfycbxX0H7c7BOpYJo7gMGpcLWO3NTpII49IwrBbl6a1m-tjCyv8BI3N3Gg3SKUCNHJE_Hq4A/exec"
+          method="post">
       <label for="name">Name</label>
-      <input type="text" id="name" name="name" placeholder="Your full name" required />
+      <input type="text" id="name" name="name" placeholder="Your full name" required/>
 
-      <label for="phone_code">Phone</label>
+      <label for="code">Phone</label>
       <div class="phone-group">
-        <select id="phone_code" name="country_code">
+        <select id="code" name="country_code">
           <option value="+1">+1 (US)</option>
           <option value="+973">+973 (BH)</option>
           <option value="+971">+971 (AE)</option>
         </select>
-        <input type="tel" id="phone" name="phone" placeholder="123-456-7830" required />
+        <input type="tel" id="phone" name="phone" placeholder="123-456-7830" required/>
       </div>
 
       <label for="comments">Comments</label>
@@ -53,23 +66,22 @@
   </div>
 
   <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-
-      fetch(form.action, {
-        method: 'POST',
-        body: data
-      })
-      .then(res => {
-        form.style.display = 'none';
-        document.getElementById('thank-you').classList.remove('hidden');
-      })
-      .catch(err => {
-        alert('Submission failed. Please try again.');
+    document.getElementById('contactForm')
+      .addEventListener('submit', function(e) {
+        e.preventDefault();
+        const form = e.target;
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form)
+        })
+        .then(() => {
+          form.style.display = 'none';
+          document.getElementById('thank-you').classList.remove('hidden');
+        })
+        .catch(() => {
+          alert('Submission failed. Please try again.');
+        });
       });
-    });
   </script>
 </body>
 </html>
